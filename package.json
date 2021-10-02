@@ -1,0 +1,43 @@
+{
+  "name": "vanishing-fields",
+  "version": "0.0.1",
+  "description": "A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.",
+  "keywords": [
+    "close",
+    "field",
+    "hidden",
+    "hide",
+    "html",
+    "input",
+    "javascript",
+    "js",
+    "label",
+    "no-jquery",
+    "open",
+    "replace",
+    "vanilla",
+    "vanish"
+  ],
+  "author": {
+    "name": "Kodie Grantham",
+    "email": "kodie.grantham@gmail.com",
+    "url": "https://kodieg.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kodie/vanishing-fields.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kodie/vanishing-fields/issues"
+  },
+  "homepage": "https://kodie.github.io/vanishing-fields",
+  "main": "vanishing-fields.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "uglifyjs vanishing-fields.js --comments /^!/ --compress --mangle --output dist/vanishing-fields.min.js --source-map \"url='vanishing-fields.min.js.map'\" --verbose",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.10.4"
+  }
+}
