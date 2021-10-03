@@ -85,7 +85,7 @@ These are the options you can set with the `options` parameter:
 
   * `closeOnFocusOut` (Default: `true`) - Set to `false` to not have the fields close when they lose focus.
 
-  * `display` (Default: `null`) - The content to display on the label element when a field has had something entered into one of it's child input elements. Functions exactly the same as the label element's `data-display` attribute with the exception that a function can be used here for more control over what is displayed. If a function is used here, it will be passed field object as the first parameter. This option is used as a fallback when the label element does not have a `data-display` attribute.
+  * `display` (Default: `null`) - The content to display on the label element when a field has had something entered into one of it's child input elements. Functions exactly the same as the label element's `data-vanishing-field-display` attribute with the exception that a function can be used here for more control over what is displayed. If a function is used here, it will be passed field object as the first parameter. This option is used as a fallback when the label element does not have a `data-vanishing-field-display` attribute.
 
   * `onClose` (Default: `null`) - A function to run when a field is closed. Receives the event as the first parameter and the field object as the second.
 
@@ -93,7 +93,7 @@ These are the options you can set with the `options` parameter:
 
   * `options` (Default: `{}`) - An object with keys set to field element identifiers (the `data-vanishing-field` attribute) and their values set to an object containing keys and values that you would normally pass to the `options` parameter. This allows for setting options to specific fields.
 
-  * `placeholder` (Default: `null`) - The content to display on the label element when a field has NOT had something entered into one of it's child input elements. Functions exactly the same as the label element's `data-placeholder` attribute with the exception that a function can be used here for more control over what is displayed. If a function is used here, it will be passed the field object as the first parameter. This option is used as a fallback when the label element does not have a `data-placeholder` attribute.
+  * `placeholder` (Default: `null`) - The content to display on the label element when a field has NOT had something entered into one of it's child input elements. Functions exactly the same as the label element's `data-vanishing-field-placeholder` attribute with the exception that a function can be used here for more control over what is displayed. If a function is used here, it will be passed the field object as the first parameter. This option is used as a fallback when the label element does not have a `data-vanishing-field-placeholder` attribute.
 
   * `startingTabIndex` (Default: `0`) - A `tabindex` attribute needs to be set on field and label elements in order for the `closeOnFocusOut` functionality to work correctly. If a field or label element does not have it's `tabindex` attribute set, one will be set for each vanishing-field initiated starting at the index this option is set to unless this option is set to `false`.
 
