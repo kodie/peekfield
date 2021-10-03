@@ -43,6 +43,7 @@ var vanishingFields = function (options, fields) {
         display: null,
         onClose: null,
         onOpen: null,
+        opened: false,
         options: {},
         placeholder: null,
         startingTabIndex: 0
@@ -331,7 +332,7 @@ var vanishingFields = function (options, fields) {
       field.classList.toggle('empty', field.empty)
       if (field.label) field.label.classList.toggle('empty', field.empty)
 
-      if (field.classList.contains('open')) {
+      if (field.classList.contains('open') || field.options.opened) {
         field.open(false)
       } else {
         field.close(false)

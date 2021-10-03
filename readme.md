@@ -91,6 +91,8 @@ These are the options you can set with the `options` parameter:
 
   * `onOpen` (Default: `null`) - A function to run when a field is opened. Receives the event as the first parameter and the field object as the second.
 
+  * `opened` (Default: `false`) - Set to `true` to have the field be opened when first initiated.
+
   * `options` (Default: `{}`) - An object with keys set to field element identifiers (the `data-vanishing-field` attribute) and their values set to an object containing keys and values that you would normally pass to the `options` parameter. This allows for setting options to specific fields.
 
   * `placeholder` (Default: `null`) - The content to display on the label element when a field has NOT had something entered into one of it's child input elements. Functions exactly the same as the label element's `data-vanishing-field-placeholder` attribute with the exception that a function can be used here for more control over what is displayed. If a function is used here, it will be passed the field object as the first parameter. This option is used as a fallback when the label element does not have a `data-vanishing-field-placeholder` attribute.
