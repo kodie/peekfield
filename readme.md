@@ -19,7 +19,7 @@ Add the JS:
 and your HTML:
 
 ```html
-<div data-vanishing-field-for="name" data-placeholder="Please enter your name."></div>
+<div data-vanishing-field-for="name" data-vanishing-field-placeholder="Please enter your name."></div>
 <div data-vanishing-field="name">
   <label for="first_name">First Name</label>
   <input type="text" name="first_name" />
