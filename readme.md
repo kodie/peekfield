@@ -125,6 +125,8 @@ These methods are attached to the field element when vanishing fields is initiat
 
 * `field.values` - An object containing the values of any input elements inside of the field element the last time they were fetched (does not change when `field.getInputValues()` is ran manually).
 
+* `field.inputs` - An array of all child input elements.
+
 
 #### Events
 
@@ -183,7 +185,7 @@ The `data-vanishing-field-ignore` attribute can be set on any input elements ins
 
 vanishing-fields does not apply any styling and leaves that up to you (except for the `display:none` and `visibility:hidden` styles if the `applyStyles` option isn't set to `false`), however these classes are applied to both the field and input elements when different things happen.
 
-* `open` - Added when a field is considered open, otherwise removed.
+* `open` - Added when a field is considered open, otherwise removed. You can also add this class to the field element to have the field be opened when first initiated.
 
 * `empty` - Added when a field is considered empty, otherwise removed.
 
