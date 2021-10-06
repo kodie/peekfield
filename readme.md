@@ -115,7 +115,7 @@ These methods are attached to the field element when vanishing fields is initiat
 
 #### Properties
 
-These methods are attached to the field element when vanishing fields is initiated and changed when different things happen and can be used to see what state a field is in:
+These properties are attached to the field element when vanishing fields is initiated and changed when different things happen and can be used to see what state a field is in:
 
 * `field.changed` - Is `true` if `field.values` doesn't match `field.originalValues`, and `false` if they match.
 
@@ -180,7 +180,7 @@ These attributes can be set on any elements (inside or outside of a field/label 
 
 #### Input elements
 
-The `data-vanishing-field-ignore` attribute can be set on any input elements inside of a field element to be ignored completely (such as hidden fields).
+* `data-vanishing-field-ignore` - This attribute can be set on any input elements inside of a field element to be ignored completely (such as hidden fields).
 
 
 ### Classes

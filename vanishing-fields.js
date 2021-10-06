@@ -50,7 +50,7 @@ var vanishingFields = function (options, fields) {
       }, options || {})
 
       if (field.options.options[identifier]) {
-        field.options = Object.assign(field.options, options.options[identifier])
+        field.options = Object.assign(field.options, field.options.options[identifier])
       }
 
       delete field.options.options
@@ -94,7 +94,11 @@ var vanishingFields = function (options, fields) {
         field.classList.toggle('open', field.opened)
         if (field.label) field.label.classList.toggle('open', field.opened)
 
-        field.focus()
+        if (field.inputs.length) {
+          field.inputs[0].focus()
+        } else {
+          field.focus()
+        }
 
         if (triggerEvents !== false) {
           field.dispatchEvent(new Event('open', { bubbles: true }))
@@ -319,6 +323,22 @@ var vanishingFields = function (options, fields) {
             field.toggle()
           })
         })(toggleElements[j3])
+      }
+
+      for (var j4 = 0; j4 < field.inputs.length; j4++) {
+        (function (input) {
+          if (input.id) {
+            var inputLabels = document.querySelectorAll('label[for=' + input.id + ']')
+            for (var j4i = 0; j4i < inputLabels.length; j4i++) {
+              (function (inputLabel) {
+                inputLabel.addEventListener('click', function (e) {
+                  if (field.options.devMode) console.log(identifier, 'input label click', inputLabel, input)
+                  field.open()
+                })
+              })(inputLabels[j4i])
+            }
+          }
+        })(field.inputs[j4])
       }
 
       field.values = field.getInputValues()

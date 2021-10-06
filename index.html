@@ -68,12 +68,18 @@
         filebokz()
 
         var fields = vanishingFields({
+          // applyStyles: false,
+          // closeOnFocusOut: false,
+          devMode: true,
+          // opened: true,
+          // startingTabIndex: false,
+
           options: {
             name: {
               onClose: function (e, field) {
                 if (!field.values.first_name || !field.values.last_name) {
                   alert('I\'m going to need you to enter your name bro.')
-                  setTimeout(function () { field.open() }, 1)
+                  field.open()
                 }
               }
             },
@@ -242,6 +248,16 @@
                 <span class="files"></span>
                 <span class="error-msg"></span>
               </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="bio">Bio</label>
+          <div data-vanishing-field-for="bio" data-vanishing-field-placeholder="Enter some information about yourself."></div>
+          <div data-vanishing-field="bio">
+            <div class="form-group">
+              <textarea class="form-control" name="bio" id="bio"></textarea>
             </div>
           </div>
         </div>
