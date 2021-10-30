@@ -33,7 +33,7 @@ var vanishingFields = function (options, fields) {
 
       vanishingFields.fieldCount++
 
-      field.label = document.querySelector("[data-vanishing-field-for=\"" + identifier + "\"]")
+      field.label = document.querySelector('[data-vanishing-field-for="' + identifier + '"]')
       field.inputs = field.querySelectorAll('input:not(data-vanishing-field-ignore),textarea:not(data-vanishing-field-ignore),select:not(data-vanishing-field-ignore)')
 
       field.options = Object.assign({
@@ -56,10 +56,10 @@ var vanishingFields = function (options, fields) {
       delete field.options.options
 
       var applyStylesAttr = field.getAttribute('data-vanishing-field-apply-styles')
-      if (applyStylesAttr) field.options.applyStyles = applyStylesAttr === 'false' ? false : true
+      if (applyStylesAttr) field.options.applyStyles = (applyStylesAttr !== 'false')
 
       var closeOnFocusOutAttr = field.getAttribute('data-vanishing-field-close-on-focus-out')
-      if (closeOnFocusOutAttr) field.options.closeOnFocusOut = closeOnFocusOutAttr === 'false' ? false : true
+      if (closeOnFocusOutAttr) field.options.closeOnFocusOut = (closeOnFocusOutAttr !== 'false')
 
       if (field.label) {
         field.label.display = field.label.getAttribute('data-vanishing-field-display') || field.options.display
@@ -115,7 +115,7 @@ var vanishingFields = function (options, fields) {
         field.values = field.getInputValues()
 
         if (field.options.applyStyles) {
-          field.style['display'] =  'none'
+          field.style['display'] = 'none'
           field.style['visibility'] = 'hidden'
 
           if (field.label) {
@@ -289,7 +289,7 @@ var vanishingFields = function (options, fields) {
         })
       }
 
-      var openElements = document.querySelectorAll("[data-vanishing-field-open=\"" + identifier + "\"]")
+      var openElements = document.querySelectorAll('[data-vanishing-field-open="' + identifier + '"]')
       for (var j1 = 0; j1 < openElements.length; j1++) {
         (function (openElement) {
           openElement.addEventListener('click', function (e) {
@@ -301,7 +301,7 @@ var vanishingFields = function (options, fields) {
         })(openElements[j1])
       }
 
-      var closeElements = document.querySelectorAll("[data-vanishing-field-close=\"" + identifier + "\"]")
+      var closeElements = document.querySelectorAll('[data-vanishing-field-close="' + identifier + '"]')
       for (var j2 = 0; j2 < closeElements.length; j2++) {
         (function (closeElement) {
           closeElement.addEventListener('click', function (e) {
@@ -313,7 +313,7 @@ var vanishingFields = function (options, fields) {
         })(closeElements[j2])
       }
 
-      var toggleElements = document.querySelectorAll("[data-vanishing-field-toggle=\"" + identifier + "\"]")
+      var toggleElements = document.querySelectorAll('[data-vanishing-field-toggle="' + identifier + '"]')
       for (var j3 = 0; j3 < toggleElements.length; j3++) {
         (function (toggleElement) {
           toggleElement.addEventListener('click', function (e) {

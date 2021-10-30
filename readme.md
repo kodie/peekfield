@@ -1,5 +1,11 @@
 # vanishing-fields
 
+[![npm package version](https://img.shields.io/npm/v/vanishing-fields.svg?style=flat-square)](https://www.npmjs.com/package/vanishing-fields)
+[![Travis build status](https://img.shields.io/travis/com/kodie/vanishing-fields.svg?style=flat-square)](https://travis-ci.com/kodie/vanishing-fields)
+[![npm package downloads](https://img.shields.io/npm/dt/vanishing-fields.svg?style=flat-square)](https://www.npmjs.com/package/vanishing-fields)
+[![code style](https://img.shields.io/badge/code_style-standard-yellow.svg?style=flat-square)](https://github.com/standard/standard)
+[![license](https://img.shields.io/github/license/kodie/vanishing-fields.svg?style=flat-square)](license.md)
+
 A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.
 
 
