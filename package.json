@@ -1,6 +1,6 @@
 {
   "name": "vanishing-fields",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.",
   "keywords": [
     "close",

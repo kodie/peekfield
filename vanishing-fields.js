@@ -1,5 +1,5 @@
 /*!
-  vanishing-fields v0.0.2 (https://github.com/kodie/vanishing-fields)
+  vanishing-fields v0.0.3 (https://github.com/kodie/vanishing-fields)
   by Kodie Grantham (https://kodieg.com)
 */
 
