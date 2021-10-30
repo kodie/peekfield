@@ -41,6 +41,7 @@ And then just use the function below:
 
 Initiates vanishing-fields.
 
+
 #### Parameters
 
   * `options` (`Object`) (*Optional*) - An object of options you can set to change how the fields function.
@@ -49,6 +50,7 @@ Initiates vanishing-fields.
 
 
 #### Examples
+
 ```js
 window.addEventListener('load', function () {
   // Run with default options and element selector
@@ -149,6 +151,7 @@ These events are fired on the field element when different things happen:
 
 Attributes can be set on fields to set different options.
 
+
 #### The "field" element
 
 This is the element that contains the inputs and any other content you would like to be able to open and close. It is visible when a field is considered open.
@@ -202,10 +205,13 @@ vanishing-fields does not apply any styling and leaves that up to you (except fo
 
 ## Related
 
+ - [minitaur](https://github.com/kodie/minitaur) - The ultimate, dependency-free, easy to use, JavaScript plugin for creating and managing modals.
+
  - [filebokz](https://github.com/kodie/filebokz) - A tiny, dependency-free, highly customizable and configurable, easy to use file input with some pretty sweet features.
 
  - [colorfield](https://github.com/kodie/colorfield) - A tiny, dependency-free, color input field helper that utilizes the native color picker.
 
 
 ## License
+
 MIT. See the [license file](license.md) for more info.
