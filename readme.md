@@ -14,15 +14,52 @@ A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.
 Visit https://kodie.github.io/vanishing-fields
 
 
-## Usage
+## Installation
 
-Add the JS:
+
+### Manual Download
+
+Download [dist/vanishing-fields.min.js](dist/vanishing-fields.min.js) and place the following HTML in your page's head element:
 
 ```html
 <script type="text/javascript" src="dist/vanishing-fields.min.js"></script>
 ```
 
-and your HTML:
+
+### CDN (Courtesy of [jsDelivr](https://jsdelivr.com))
+
+Place the following HTML in your page's head element (check to make sure the version in the URL is the version you want):
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kodie/vanishing-fields@0.0.3/dist/vanishing-fields.min.js"></script>
+```
+
+
+### [NPM](https://npmjs.com)
+
+```
+npm install vanishing-fields --save
+```
+
+
+### [GPM](https://github.com/itsahappymedium/gpm)
+
+```
+gpm install kodie/vanishing-fields --save
+```
+
+
+### [Bower](https://bower.io)
+
+```
+bower install kodie/vanishing-fields --save
+```
+
+
+## Usage
+
+
+### Basic HTML Structure
 
 ```html
 <div data-vanishing-field-for="name" data-vanishing-field-placeholder="Please enter your name."></div>
@@ -33,8 +70,6 @@ and your HTML:
   <input type="text" name="last_name" />
 </div>
 ```
-
-And then just use the function below:
 
 
 ### The `vanishingFields([options], [fields])` Function
