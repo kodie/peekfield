@@ -1,9 +1,9 @@
 /*!
-  vanishing-fields v0.0.3 (https://github.com/kodie/vanishing-fields)
+  vanishing-fields v0.1.0 (https://github.com/kodie/vanishing-fields)
   by Kodie Grantham (https://kodieg.com)
 */
 
-var vanishingFields = function (options, fields) {
+var vanishingFields = (options, fields) => {
   if (!options) options = {}
   if (!fields) fields = '[data-vanishing-field]:not(data-vanishing-field-ignore)'
 
@@ -22,9 +22,9 @@ var vanishingFields = function (options, fields) {
     }
   }
 
-  for (var i = 0; i < fields.length; i++) {
+  for (let i = 0; i < fields.length; i++) {
     (function (field) {
-      var identifier = field.getAttribute('data-vanishing-field')
+      const identifier = field.getAttribute('data-vanishing-field')
 
       if (!identifier.length) {
         console.warn(field, 'data-vanishing-field attribute needs to be set to a string')
@@ -55,10 +55,10 @@ var vanishingFields = function (options, fields) {
 
       delete field.options.options
 
-      var applyStylesAttr = field.getAttribute('data-vanishing-field-apply-styles')
+      const applyStylesAttr = field.getAttribute('data-vanishing-field-apply-styles')
       if (applyStylesAttr) field.options.applyStyles = (applyStylesAttr !== 'false')
 
-      var closeOnFocusOutAttr = field.getAttribute('data-vanishing-field-close-on-focus-out')
+      const closeOnFocusOutAttr = field.getAttribute('data-vanishing-field-close-on-focus-out')
       if (closeOnFocusOutAttr) field.options.closeOnFocusOut = (closeOnFocusOutAttr !== 'false')
 
       if (field.label) {
@@ -124,12 +124,12 @@ var vanishingFields = function (options, fields) {
           }
         }
 
-        var inputValues = Object.values(field.values).filter(function (v) { return v && v.length })
+        const inputValues = Object.values(field.values).filter(function (v) { return v && v.length })
 
         field.changed = false
         field.empty = !inputValues.length
 
-        for (var name in field.values) {
+        for (const name in field.values) {
           if (field.values.hasOwnProperty(name)) {
             if (Array.isArray(field.values[name])) {
               if (field.values[name].sort().join(',') !== field.originalValues[name].sort().join(',')) {
@@ -170,8 +170,8 @@ var vanishingFields = function (options, fields) {
                 field.label.innerHTML = field.label.display(field)
               } else {
                 field.label.innerHTML = field.label.display.replace(/{(.+?)}/g, function (match, name) {
-                  var split = name.split('|')
-                  var value = field.values[split[0]] || split[1] || match
+                  const split = name.split('|')
+                  let value = field.values[split[0]] || split[1] || match
                   if (Array.isArray(value)) value = value.join(split[2] || ',')
                   return value
                 })
@@ -189,7 +189,7 @@ var vanishingFields = function (options, fields) {
         return field
       }
 
-      field.toggle = function (open, triggerEvents) {
+      field.toggle = (open, triggerEvents) => {
         if (field.options.devMode) console.log(identifier, 'toggle')
 
         if (open === true || (open === undefined && !field.opened)) {
@@ -201,14 +201,14 @@ var vanishingFields = function (options, fields) {
         return field
       }
 
-      field.getInputValues = function () {
-        var values = {}
+      field.getInputValues = () => {
+        let values = {}
 
         if (field.inputs.length) {
-          values = Array.from(field.inputs).reduce(function (values, input) {
-            var name = input.name || input.id
-            var value = input.value
-            var tagName = input.tagName.toLowerCase()
+          values = Array.from(field.inputs).reduce((values, input) => {
+            let name = input.name || input.id
+            let value = input.value
+            const tagName = input.tagName.toLowerCase()
 
             if (name.slice(-2) === '[]') {
               name = name.substr(0, name.length - 2)
@@ -239,7 +239,7 @@ var vanishingFields = function (options, fields) {
                 value = [values[name], value]
               }
 
-              value = value.filter(function (v) { return v && v.length })
+              value = value.filter((v) => v && v.length)
             }
 
             values[name] = value
@@ -289,8 +289,8 @@ var vanishingFields = function (options, fields) {
         })
       }
 
-      var openElements = document.querySelectorAll('[data-vanishing-field-open="' + identifier + '"]')
-      for (var j1 = 0; j1 < openElements.length; j1++) {
+      const openElements = document.querySelectorAll('[data-vanishing-field-open="' + identifier + '"]')
+      for (let j1 = 0; j1 < openElements.length; j1++) {
         (function (openElement) {
           openElement.addEventListener('click', function (e) {
             if (e.target !== e.currentTarget) return
@@ -301,8 +301,8 @@ var vanishingFields = function (options, fields) {
         })(openElements[j1])
       }
 
-      var closeElements = document.querySelectorAll('[data-vanishing-field-close="' + identifier + '"]')
-      for (var j2 = 0; j2 < closeElements.length; j2++) {
+      const closeElements = document.querySelectorAll('[data-vanishing-field-close="' + identifier + '"]')
+      for (let j2 = 0; j2 < closeElements.length; j2++) {
         (function (closeElement) {
           closeElement.addEventListener('click', function (e) {
             if (e.target !== e.currentTarget) return
@@ -313,8 +313,8 @@ var vanishingFields = function (options, fields) {
         })(closeElements[j2])
       }
 
-      var toggleElements = document.querySelectorAll('[data-vanishing-field-toggle="' + identifier + '"]')
-      for (var j3 = 0; j3 < toggleElements.length; j3++) {
+      const toggleElements = document.querySelectorAll('[data-vanishing-field-toggle="' + identifier + '"]')
+      for (let j3 = 0; j3 < toggleElements.length; j3++) {
         (function (toggleElement) {
           toggleElement.addEventListener('click', function (e) {
             if (e.target !== e.currentTarget) return
@@ -325,11 +325,11 @@ var vanishingFields = function (options, fields) {
         })(toggleElements[j3])
       }
 
-      for (var j4 = 0; j4 < field.inputs.length; j4++) {
+      for (let j4 = 0; j4 < field.inputs.length; j4++) {
         (function (input) {
           if (input.id) {
-            var inputLabels = document.querySelectorAll('label[for=' + input.id + ']')
-            for (var j4i = 0; j4i < inputLabels.length; j4i++) {
+            const inputLabels = document.querySelectorAll('label[for=' + input.id + ']')
+            for (let j4i = 0; j4i < inputLabels.length; j4i++) {
               (function (inputLabel) {
                 inputLabel.addEventListener('click', function (e) {
                   if (field.options.devMode) console.log(identifier, 'input label click', inputLabel, input)
@@ -344,7 +344,7 @@ var vanishingFields = function (options, fields) {
       field.values = field.getInputValues()
       field.originalValues = Object.assign({}, field.values)
 
-      var inputValues = Object.values(field.values).filter(function (v) { return v && v.length })
+      const inputValues = Object.values(field.values).filter(function (v) { return v && v.length })
 
       field.changed = false
       field.empty = !inputValues.length
@@ -362,3 +362,5 @@ var vanishingFields = function (options, fields) {
 
   return fields
 }
+
+export default vanishingFields

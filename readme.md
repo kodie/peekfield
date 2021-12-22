@@ -41,6 +41,14 @@ Place the following HTML in your page's head element (check to make sure the ver
 npm install vanishing-fields --save
 ```
 
+```js
+// ES6
+import vanishingFields from 'vanishing-fields'
+
+// CommonJS
+const vanishingFields = require('vanishing-fields')
+```
+
 
 ### [GPM](https://github.com/itsahappymedium/gpm)
 
