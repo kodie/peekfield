@@ -1,6 +1,6 @@
 {
   "name": "peekfield",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.",
   "keywords": [
     "close",
