@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>vanishing-fields - A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.</title>
+    <title>peekfield - A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kodie/colorfield@v0.0.1/dist/colorfield.min.css" />
@@ -46,19 +46,19 @@
         width: 75%;
       }
 
-      .field *[data-vanishing-field-for] {
+      .field *[data-peekfield-for] {
         cursor: pointer;
       }
 
-      .field *[data-vanishing-field-for].empty {
+      .field *[data-peekfield-for].empty {
         font-style: italic;
       }
 
-      .field *[data-vanishing-field-for].changed {
+      .field *[data-peekfield-for].changed {
         font-weight: bold;
       }
     </style>
-    <script type="text/javascript" src="dist/vanishing-fields.min.js"></script>
+    <script type="text/javascript" src="dist/peekfield.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kodie/colorfield@v0.0.1/dist/colorfield.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kodie/filebokz@v0.0.1/dist/filebokz.min.js"></script>
     <script type="text/javascript">
@@ -66,7 +66,7 @@
         colorfield()
         filebokz()
 
-        var fields = vanishingFields({
+        var fields = peekfield({
           // applyStyles: false,
           // closeOnFocusOut: false,
           devMode: true,
@@ -121,35 +121,35 @@
     </script>
   </head>
   <body>
-    <a class="github-fork-ribbon" href="https://github.com/kodie/vanishing-fields" data-ribbon="Check me out on GitHub" title="Check me out on GitHub">Check me out on GitHub</a>
+    <a class="github-fork-ribbon" href="https://github.com/kodie/peekfield" data-ribbon="Check me out on GitHub" title="Check me out on GitHub">Check me out on GitHub</a>
 
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-4">vanishing-fields</h1>
+        <h1 class="display-4">peekfield</h1>
         <p class="lead">A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.</p>
-        <p><a href="https://github.com/kodie/vanishing-fields" target="_blank">https://github.com/kodie/vanishing-fields</a></p>
+        <p><a href="https://github.com/kodie/peekfield" target="_blank">https://github.com/kodie/peekfield</a></p>
       </div>
     </div>
 
     <div id="main">
       <div class="container">
-        <div class="field" data-vanishing-field-open="name">
-          <div data-vanishing-field-for="name" data-vanishing-field-placeholder="Enter your name here, please." data-vanishing-field-display="They call you {last_name|McBlankerton}, {first_name|Blank} {last_name|McBlankerton}."></div>
-          <div class="input-group" data-vanishing-field="name">
+        <div class="field" data-peekfield-open="name">
+          <div data-peekfield-for="name" data-peekfield-placeholder="Enter your name here, please." data-peekfield-display="They call you {last_name|McBlankerton}, {first_name|Blank} {last_name|McBlankerton}."></div>
+          <div class="input-group" data-peekfield="name">
             <div class="input-group-prepend">
               <span class="input-group-text">First and last name</span>
             </div>
             <input type="text" class="form-control" name="first_name" placeholder="Enter your first name here" />
             <input type="text" class="form-control" name="last_name" placeholder="Enter your last name here" />
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary" data-vanishing-field-close="name">Confirm</button>
+              <button type="button" class="btn btn-outline-secondary" data-peekfield-close="name">Confirm</button>
             </div>
           </div>
         </div>
 
-        <div class="field" data-vanishing-field-open="animals">
-          <div data-vanishing-field-for="animals" data-vanishing-field-placeholder="Choose any animals you have in your house."></div>
-          <div data-vanishing-field="animals">
+        <div class="field" data-peekfield-open="animals">
+          <div data-peekfield-for="animals" data-peekfield-placeholder="Choose any animals you have in your house."></div>
+          <div data-peekfield="animals">
             <div class="form-group">
               <p>What animals do you have?</p>
 
@@ -202,9 +202,9 @@
           </div>
         </div>
 
-        <div class="field" data-vanishing-field-open="color">
-          <div data-vanishing-field-for="color" data-vanishing-field-placeholder="What's your favorite color?" data-vanishing-field-display="Your favorite color is <span style='color:{favorite-color}'>{favorite-color}</span>."></div>
-          <div data-vanishing-field="color">
+        <div class="field" data-peekfield-open="color">
+          <div data-peekfield-for="color" data-peekfield-placeholder="What's your favorite color?" data-peekfield-display="Your favorite color is <span style='color:{favorite-color}'>{favorite-color}</span>."></div>
+          <div data-peekfield="color">
             <div class="colorfield">
               <input type="color" name="favorite-color" value="#5185b3" />
               <button type="button" class="btn btn-primary colorfield-open" data-colorfield-style-prop="background-color">Pick a color!</button>
@@ -212,9 +212,9 @@
           </div>
         </div>
 
-        <div class="field" data-vanishing-field-open="activities">
-          <div data-vanishing-field-for="activities" data-vanishing-field-placeholder="What are your favorite activities?"></div>
-          <div data-vanishing-field="activities">
+        <div class="field" data-peekfield-open="activities">
+          <div data-peekfield-for="activities" data-peekfield-placeholder="What are your favorite activities?"></div>
+          <div data-peekfield="activities">
             <div class="form-group">
               <select class="form-control" name="favorite-activites" multiple>
                 <option>Swimming</option>
@@ -236,9 +236,9 @@
           </div>
         </div>
 
-        <div class="field" data-vanishing-field-open="picture">
-          <div data-vanishing-field-for="picture" data-vanishing-field-placeholder="Care to upload a photo of yourself?"></div>
-          <div data-vanishing-field="picture">
+        <div class="field" data-peekfield-open="picture">
+          <div data-peekfield-for="picture" data-peekfield-placeholder="Care to upload a photo of yourself?"></div>
+          <div data-peekfield="picture">
             <div class="filebokz">
               <input type="file" name="picture" id="picture" />
               <label for="picture">
@@ -253,8 +253,8 @@
 
         <div class="field">
           <label for="bio">Bio</label>
-          <div data-vanishing-field-for="bio" data-vanishing-field-placeholder="Enter some information about yourself."></div>
-          <div data-vanishing-field="bio">
+          <div data-peekfield-for="bio" data-peekfield-placeholder="Enter some information about yourself."></div>
+          <div data-peekfield="bio">
             <div class="form-group">
               <textarea class="form-control" name="bio" id="bio"></textarea>
             </div>
@@ -262,8 +262,8 @@
         </div>
 
         <div>
-          <button type="button" class="btn btn-primary" data-vanishing-field-toggle="hidden-guy">This guy doesn't even need a label</button>
-          <div data-vanishing-field="hidden-guy" data-vanishing-field-close-on-focus-out="false">
+          <button type="button" class="btn btn-primary" data-peekfield-toggle="hidden-guy">This guy doesn't even need a label</button>
+          <div data-peekfield="hidden-guy" data-peekfield-close-on-focus-out="false">
             <span>You found me!</span>
           </div>
         </div>

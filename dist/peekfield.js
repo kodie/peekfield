@@ -1,44 +1,40 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.vanishingFields = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.peekfield = factory());
 })(this, (function () { 'use strict';
 
   /*!
-    vanishing-fields v0.1.0 (https://github.com/kodie/vanishing-fields)
+    peekfield v0.2.0 (https://peekfield.js.org)
     by Kodie Grantham (https://kodieg.com)
   */
-  var vanishingFields = function vanishingFields(options, fields) {
-    if (!options) options = {};
-    if (!fields) fields = '[data-vanishing-field]:not(data-vanishing-field-ignore)';
 
+  var peekfield = function peekfield(options, fields) {
+    if (!options) options = {};
+    if (!fields) fields = '[data-peekfield]:not(data-peekfield-ignore)';
     if (typeof fields === 'string') {
       fields = document.querySelectorAll(fields);
     } else if (fields instanceof HTMLElement) {
       fields = [fields];
     }
-
-    if (vanishingFields.fieldCount === undefined) {
-      vanishingFields.fieldCount = 0;
-      vanishingFields.lastTabIndex = -1;
+    if (peekfield.fieldCount === undefined) {
+      peekfield.fieldCount = 0;
+      peekfield.lastTabIndex = -1;
     } else {
       if (!options.startingTabIndex) {
-        options.startingTabIndex = vanishingFields.lastTabIndex + 1;
+        options.startingTabIndex = peekfield.lastTabIndex + 1;
       }
     }
-
     var _loop = function _loop(i) {
       (function (field) {
-        var identifier = field.getAttribute('data-vanishing-field');
-
+        var identifier = field.getAttribute('data-peekfield');
         if (!identifier.length) {
-          console.warn(field, 'data-vanishing-field attribute needs to be set to a string');
+          console.warn(field, 'data-peekfield attribute needs to be set to a string');
           return false;
         }
-
-        vanishingFields.fieldCount++;
-        field.label = document.querySelector('[data-vanishing-field-for="' + identifier + '"]');
-        field.inputs = field.querySelectorAll('input:not(data-vanishing-field-ignore),textarea:not(data-vanishing-field-ignore),select:not(data-vanishing-field-ignore)');
+        peekfield.fieldCount++;
+        field.label = document.querySelector('[data-peekfield-for="' + identifier + '"]');
+        field.inputs = field.querySelectorAll('input:not(data-peekfield-ignore),textarea:not(data-peekfield-ignore),select:not(data-peekfield-ignore)');
         field.options = Object.assign({
           applyStyles: true,
           closeOnFocusOut: true,
@@ -51,86 +47,69 @@
           placeholder: null,
           startingTabIndex: 0
         }, options || {});
-
         if (field.options.options[identifier]) {
           field.options = Object.assign(field.options, field.options.options[identifier]);
         }
-
         delete field.options.options;
-        var applyStylesAttr = field.getAttribute('data-vanishing-field-apply-styles');
+        var applyStylesAttr = field.getAttribute('data-peekfield-apply-styles');
         if (applyStylesAttr) field.options.applyStyles = applyStylesAttr !== 'false';
-        var closeOnFocusOutAttr = field.getAttribute('data-vanishing-field-close-on-focus-out');
+        var closeOnFocusOutAttr = field.getAttribute('data-peekfield-close-on-focus-out');
         if (closeOnFocusOutAttr) field.options.closeOnFocusOut = closeOnFocusOutAttr !== 'false';
-
         if (field.label) {
-          field.label.display = field.label.getAttribute('data-vanishing-field-display') || field.options.display;
-          field.label.placeholder = field.label.getAttribute('data-vanishing-field-placeholder') || field.options.placeholder;
-
+          field.label.display = field.label.getAttribute('data-peekfield-display') || field.options.display;
+          field.label.placeholder = field.label.getAttribute('data-peekfield-placeholder') || field.options.placeholder;
           if (field.options.startingTabIndex !== false && !field.label.getAttribute('tabindex')) {
             field.label.setAttribute('tabindex', field.options.startingTabIndex + i);
           }
         }
-
         if (field.options.startingTabIndex !== false && !field.getAttribute('tabindex')) {
           field.setAttribute('tabindex', field.options.startingTabIndex + i);
-          vanishingFields.lastTabIndex = field.options.startingTabIndex + i;
+          peekfield.lastTabIndex = field.options.startingTabIndex + i;
         }
-
         field.open = function (triggerEvents) {
           if (field.options.devMode) console.log(identifier, 'open');
           if (field.opened === true) return field;
           field.opened = true;
-
           if (field.options.applyStyles) {
             field.style['display'] = null;
             field.style['visibility'] = null;
-
             if (field.label) {
               field.label.style['display'] = 'none';
               field.label.style['visibility'] = 'hidden';
             }
           }
-
           field.classList.toggle('open', field.opened);
           if (field.label) field.label.classList.toggle('open', field.opened);
-
           if (field.inputs.length) {
             field.inputs[0].focus();
           } else {
             field.focus();
           }
-
           if (triggerEvents !== false) {
             field.dispatchEvent(new Event('open', {
               bubbles: true
             }));
           }
-
           return field;
         };
-
         field.close = function (triggerEvents) {
           if (field.options.devMode) console.log(identifier, 'close');
           if (field.opened === false) return field;
           field.opened = false;
           field.values = field.getInputValues();
-
           if (field.options.applyStyles) {
             field.style['display'] = 'none';
             field.style['visibility'] = 'hidden';
-
             if (field.label) {
               field.label.style['display'] = null;
               field.label.style['visibility'] = null;
             }
           }
-
           var inputValues = Object.values(field.values).filter(function (v) {
             return v && v.length;
           });
           field.changed = false;
           field.empty = !inputValues.length;
-
           for (var name in field.values) {
             if (field.values.hasOwnProperty(name)) {
               if (Array.isArray(field.values[name])) {
@@ -146,16 +125,13 @@
               }
             }
           }
-
           field.classList.toggle('open', field.opened);
           field.classList.toggle('changed', field.changed);
           field.classList.toggle('empty', field.empty);
-
           if (field.label) {
             field.label.classList.toggle('open', field.opened);
             field.label.classList.toggle('changed', field.changed);
             field.label.classList.toggle('empty', field.empty);
-
             if (field.empty) {
               if (field.label.placeholder) {
                 if (typeof field.label.placeholder === 'function') {
@@ -183,80 +159,64 @@
               }
             }
           }
-
           if (triggerEvents !== false) {
             field.dispatchEvent(new Event('close', {
               bubbles: true
             }));
           }
-
           return field;
         };
-
         field.toggle = function (open, triggerEvents) {
           if (field.options.devMode) console.log(identifier, 'toggle');
-
           if (open === true || open === undefined && !field.opened) {
             field.open(triggerEvents);
           } else if (open === false || open === undefined && field.opened) {
             field.close(triggerEvents);
           }
-
           return field;
         };
-
         field.getInputValues = function () {
           var values = {};
-
           if (field.inputs.length) {
             values = Array.from(field.inputs).reduce(function (values, input) {
               var name = input.name || input.id;
               var value = input.value;
               var tagName = input.tagName.toLowerCase();
-
               if (name.slice(-2) === '[]') {
                 name = name.substr(0, name.length - 2);
                 value = [value];
               }
-
               if (tagName === 'select' && input.multiple) {
                 value = Array.from(input.selectedOptions).map(function (option) {
                   return option.value;
                 });
               }
-
               if (input.type === 'file') {
                 value = Array.from(input.files).map(function (file) {
                   return file.name;
                 });
               }
-
               if ((input.type === 'checkbox' || input.type === 'radio') && !input.checked) {
                 if (values[name]) return values;
                 value = Array.isArray(value) ? [] : null;
               }
-
               if (values[name]) {
                 if (Array.isArray(values[name])) {
                   value = values[name].concat([value]);
                 } else {
                   value = [values[name], value];
                 }
-
                 value = value.filter(function (v) {
                   return v && v.length;
                 });
               }
-
               values[name] = value;
               return values;
             }, {});
           }
-
           if (field.options.devMode) console.log(identifier, 'input values:', values);
           return values;
         };
-
         if (field.label) {
           field.label.addEventListener('click', function (e) {
             e.stopImmediatePropagation();
@@ -269,14 +229,12 @@
             field.open();
           });
         }
-
         field.addEventListener('focusout', function (e) {
           if (field.contains(e.relatedTarget) || field.contains(document.activeElement)) return;
           e.stopImmediatePropagation();
           if (field.options.devMode) console.log(identifier, 'focusout');
           if (field.options.closeOnFocusOut) field.close();
         });
-
         if (field.options.onOpen) {
           field.addEventListener('open', function (e) {
             e.stopImmediatePropagation();
@@ -284,7 +242,6 @@
             field.options.onOpen(e, field);
           });
         }
-
         if (field.options.onClose) {
           field.addEventListener('close', function (e) {
             e.stopImmediatePropagation();
@@ -292,9 +249,7 @@
             field.options.onClose(e, field);
           });
         }
-
-        var openElements = document.querySelectorAll('[data-vanishing-field-open="' + identifier + '"]');
-
+        var openElements = document.querySelectorAll('[data-peekfield-open="' + identifier + '"]');
         for (var j1 = 0; j1 < openElements.length; j1++) {
           (function (openElement) {
             openElement.addEventListener('click', function (e) {
@@ -305,9 +260,7 @@
             });
           })(openElements[j1]);
         }
-
-        var closeElements = document.querySelectorAll('[data-vanishing-field-close="' + identifier + '"]');
-
+        var closeElements = document.querySelectorAll('[data-peekfield-close="' + identifier + '"]');
         for (var j2 = 0; j2 < closeElements.length; j2++) {
           (function (closeElement) {
             closeElement.addEventListener('click', function (e) {
@@ -318,9 +271,7 @@
             });
           })(closeElements[j2]);
         }
-
-        var toggleElements = document.querySelectorAll('[data-vanishing-field-toggle="' + identifier + '"]');
-
+        var toggleElements = document.querySelectorAll('[data-peekfield-toggle="' + identifier + '"]');
         for (var j3 = 0; j3 < toggleElements.length; j3++) {
           (function (toggleElement) {
             toggleElement.addEventListener('click', function (e) {
@@ -331,12 +282,10 @@
             });
           })(toggleElements[j3]);
         }
-
         for (var j4 = 0; j4 < field.inputs.length; j4++) {
           (function (input) {
             if (input.id) {
               var inputLabels = document.querySelectorAll('label[for=' + input.id + ']');
-
               for (var j4i = 0; j4i < inputLabels.length; j4i++) {
                 (function (inputLabel) {
                   inputLabel.addEventListener('click', function (e) {
@@ -348,7 +297,6 @@
             }
           })(field.inputs[j4]);
         }
-
         field.values = field.getInputValues();
         field.originalValues = Object.assign({}, field.values);
         var inputValues = Object.values(field.values).filter(function (v) {
@@ -358,7 +306,6 @@
         field.empty = !inputValues.length;
         field.classList.toggle('empty', field.empty);
         if (field.label) field.label.classList.toggle('empty', field.empty);
-
         if (field.classList.contains('open') || field.options.opened) {
           field.open(false);
         } else {
@@ -366,15 +313,13 @@
         }
       })(fields[i]);
     };
-
     for (var i = 0; i < fields.length; i++) {
       _loop(i);
     }
-
     return fields;
   };
 
-  return vanishingFields;
+  return peekfield;
 
 }));
-//# sourceMappingURL=vanishing-fields.js.map
+//# sourceMappingURL=peekfield.js.map

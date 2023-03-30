@@ -1,5 +1,5 @@
 {
-  "name": "vanishing-fields",
+  "name": "peekfield",
   "version": "0.1.0",
   "description": "A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.",
   "keywords": [
@@ -14,6 +14,7 @@
     "label",
     "no-jquery",
     "open",
+    "peek",
     "replace",
     "vanilla",
     "vanish"
@@ -25,19 +26,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kodie/vanishing-fields.git"
+    "url": "https://github.com/kodie/peekfield.git"
   },
   "bugs": {
-    "url": "https://github.com/kodie/vanishing-fields/issues"
+    "url": "https://github.com/kodie/peekfield/issues"
   },
-  "homepage": "https://kodie.github.io/vanishing-fields",
+  "homepage": "https://peekfield.js.org",
   "license": "MIT",
-  "main": "dist/vanishing-fields.js",
-  "module": "src/vanishing-fields.js",
+  "main": "dist/peekfield.js",
+  "module": "src/peekfield.js",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
   "scripts": {
     "build": "npm run test && npm run build-js && npm run minify-js",
     "build-js": "rollup --config rollup.config.js",
-    "minify-js": "uglifyjs dist/vanishing-fields.js --comments /^!/ --compress --mangle --output dist/vanishing-fields.min.js --source-map \"url='vanishing-fields.min.js.map'\"",
+    "minify-js": "uglifyjs dist/peekfield.js --comments /^!/ --compress --mangle --output dist/peekfield.min.js --source-map \"url='peekfield.min.js.map'\"",
     "test": "standard --env browser"
   },
   "devDependencies": {

@@ -1,11 +1,11 @@
 /*!
-  vanishing-fields v0.1.0 (https://github.com/kodie/vanishing-fields)
+  peekfield v0.2.0 (https://peekfield.js.org)
   by Kodie Grantham (https://kodieg.com)
 */
 
-var vanishingFields = (options, fields) => {
+var peekfield = (options, fields) => {
   if (!options) options = {}
-  if (!fields) fields = '[data-vanishing-field]:not(data-vanishing-field-ignore)'
+  if (!fields) fields = '[data-peekfield]:not(data-peekfield-ignore)'
 
   if (typeof fields === 'string') {
     fields = document.querySelectorAll(fields)
@@ -13,28 +13,28 @@ var vanishingFields = (options, fields) => {
     fields = [fields]
   }
 
-  if (vanishingFields.fieldCount === undefined) {
-    vanishingFields.fieldCount = 0
-    vanishingFields.lastTabIndex = -1
+  if (peekfield.fieldCount === undefined) {
+    peekfield.fieldCount = 0
+    peekfield.lastTabIndex = -1
   } else {
     if (!options.startingTabIndex) {
-      options.startingTabIndex = (vanishingFields.lastTabIndex + 1)
+      options.startingTabIndex = (peekfield.lastTabIndex + 1)
     }
   }
 
   for (let i = 0; i < fields.length; i++) {
     (function (field) {
-      const identifier = field.getAttribute('data-vanishing-field')
+      const identifier = field.getAttribute('data-peekfield')
 
       if (!identifier.length) {
-        console.warn(field, 'data-vanishing-field attribute needs to be set to a string')
+        console.warn(field, 'data-peekfield attribute needs to be set to a string')
         return false
       }
 
-      vanishingFields.fieldCount++
+      peekfield.fieldCount++
 
-      field.label = document.querySelector('[data-vanishing-field-for="' + identifier + '"]')
-      field.inputs = field.querySelectorAll('input:not(data-vanishing-field-ignore),textarea:not(data-vanishing-field-ignore),select:not(data-vanishing-field-ignore)')
+      field.label = document.querySelector('[data-peekfield-for="' + identifier + '"]')
+      field.inputs = field.querySelectorAll('input:not(data-peekfield-ignore),textarea:not(data-peekfield-ignore),select:not(data-peekfield-ignore)')
 
       field.options = Object.assign({
         applyStyles: true,
@@ -55,15 +55,15 @@ var vanishingFields = (options, fields) => {
 
       delete field.options.options
 
-      const applyStylesAttr = field.getAttribute('data-vanishing-field-apply-styles')
+      const applyStylesAttr = field.getAttribute('data-peekfield-apply-styles')
       if (applyStylesAttr) field.options.applyStyles = (applyStylesAttr !== 'false')
 
-      const closeOnFocusOutAttr = field.getAttribute('data-vanishing-field-close-on-focus-out')
+      const closeOnFocusOutAttr = field.getAttribute('data-peekfield-close-on-focus-out')
       if (closeOnFocusOutAttr) field.options.closeOnFocusOut = (closeOnFocusOutAttr !== 'false')
 
       if (field.label) {
-        field.label.display = field.label.getAttribute('data-vanishing-field-display') || field.options.display
-        field.label.placeholder = field.label.getAttribute('data-vanishing-field-placeholder') || field.options.placeholder
+        field.label.display = field.label.getAttribute('data-peekfield-display') || field.options.display
+        field.label.placeholder = field.label.getAttribute('data-peekfield-placeholder') || field.options.placeholder
 
         if (field.options.startingTabIndex !== false && !field.label.getAttribute('tabindex')) {
           field.label.setAttribute('tabindex', field.options.startingTabIndex + i)
@@ -72,7 +72,7 @@ var vanishingFields = (options, fields) => {
 
       if (field.options.startingTabIndex !== false && !field.getAttribute('tabindex')) {
         field.setAttribute('tabindex', field.options.startingTabIndex + i)
-        vanishingFields.lastTabIndex = (field.options.startingTabIndex + i)
+        peekfield.lastTabIndex = (field.options.startingTabIndex + i)
       }
 
       field.open = function (triggerEvents) {
@@ -289,7 +289,7 @@ var vanishingFields = (options, fields) => {
         })
       }
 
-      const openElements = document.querySelectorAll('[data-vanishing-field-open="' + identifier + '"]')
+      const openElements = document.querySelectorAll('[data-peekfield-open="' + identifier + '"]')
       for (let j1 = 0; j1 < openElements.length; j1++) {
         (function (openElement) {
           openElement.addEventListener('click', function (e) {
@@ -301,7 +301,7 @@ var vanishingFields = (options, fields) => {
         })(openElements[j1])
       }
 
-      const closeElements = document.querySelectorAll('[data-vanishing-field-close="' + identifier + '"]')
+      const closeElements = document.querySelectorAll('[data-peekfield-close="' + identifier + '"]')
       for (let j2 = 0; j2 < closeElements.length; j2++) {
         (function (closeElement) {
           closeElement.addEventListener('click', function (e) {
@@ -313,7 +313,7 @@ var vanishingFields = (options, fields) => {
         })(closeElements[j2])
       }
 
-      const toggleElements = document.querySelectorAll('[data-vanishing-field-toggle="' + identifier + '"]')
+      const toggleElements = document.querySelectorAll('[data-peekfield-toggle="' + identifier + '"]')
       for (let j3 = 0; j3 < toggleElements.length; j3++) {
         (function (toggleElement) {
           toggleElement.addEventListener('click', function (e) {
@@ -363,4 +363,4 @@ var vanishingFields = (options, fields) => {
   return fields
 }
 
-export default vanishingFields
+export default peekfield

@@ -1,11 +1,11 @@
 import { babel } from '@rollup/plugin-babel'
 
 const config = {
-  input: 'src/vanishing-fields.js',
+  input: 'src/peekfield.js',
   output: {
     dir: 'dist',
     format: 'umd',
-    name: 'vanishingFields',
+    name: 'peekfield',
     sourcemap: true
   },
   plugins: [
