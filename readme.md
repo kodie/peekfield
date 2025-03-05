@@ -8,6 +8,8 @@
 
 A dependency-free, easy to use, JavaScript plugin for hiding and showing fields.
 
+**WARNING: This project has been deprecated and will no longer recieve updates or support. Feel free to fork the code if you wish to continue maintaining.**
+
 
 ## Demo
 
